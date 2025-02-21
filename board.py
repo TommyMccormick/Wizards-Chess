@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QMouseEvent
 import chess
 
 class ChessBoard(QWidget):
@@ -52,7 +52,7 @@ class ChessBoard(QWidget):
                 square = QLabel()
                 square.setFixedSize(70, 70)
 
-                # Apply color alternation logic based on row and column
+                # Color alternation logic based on row and column
                 if (row + col) % 2 == 0:
                     square.setStyleSheet(f"background-color: {white}")
                 else: # (row + col) % 2 != 0
@@ -72,15 +72,6 @@ class ChessBoard(QWidget):
                         print(f"❌ Missing image for {piece} at ({row}, {col})")
                 layout.addWidget(square, row, col)
 
-                # if piece:
-                #     piece_path = piece_dict.get(piece, "")
-                #     print(f"Loading image for {piece}: {piece_path}")  # Debugging output
-                #     if os.path.exists(piece_path):
-                #         pixmap = QPixmap(piece_path)
-                #         square.setPixmap(pixmap)
-                # else:
-                #     print(f"Image not found: {piece_path}")  # Error message if file is missing        
-                # # Add the label to the grid layout at position (row, col)
         self.setLayout(layout)  # Ensure layout is set
         self.update()           # Force UI update
         self.repaint()          # Refresh display
