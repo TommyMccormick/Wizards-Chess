@@ -3,6 +3,7 @@ import os
 from PyQt6.QtWidgets import QApplication, QWidget, QGridLayout, QLabel
 from PyQt6.QtGui import QPixmap, QMouseEvent
 import chess
+from mousemovement import MouseMovement
 
 class ChessBoard(QWidget):
     def __init__(self):
@@ -14,6 +15,8 @@ class ChessBoard(QWidget):
         layout = QGridLayout()  # Create a grid layout to arrange widgets
         self.setLayout(layout)  # Set the layout to the window
 
+        self.mousemovement = MouseMovement() # Create instance of mouse click movement
+        
         # Colors for light and dark squares
         white = "#ffffff"
         black = "#7e7e7e" # Black with my black pawns doesnt show them on black squares
@@ -67,9 +70,9 @@ class ChessBoard(QWidget):
                         # QPixmap is for handling images efficiently
                         pixmap = QPixmap(piece_path).scaled(40, 40)  # Resize to fit square
                         square.setPixmap(pixmap)
-                        print(f"✔ Image applied for {piece} at ({row}, {col})")
-                    else:
-                        print(f"❌ Missing image for {piece} at ({row}, {col})")
+                        #print(f"✔ Image applied for {piece} at ({row}, {col})")
+                    #else:
+                        #print(f"❌ Missing image for {piece} at ({row}, {col})")
                 layout.addWidget(square, row, col)
 
         self.setLayout(layout)  # Ensure layout is set
